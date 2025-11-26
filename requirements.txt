@@ -1,0 +1,13 @@
+echo "Building Docker Image..."
+docker build -t myapp:latest .
+
+echo "Stopping old container..."
+docker container stop mycont || true
+
+echo "Removing old container..."
+docker container rm mycont || true
+
+echo "Running new container..."
+docker run -d --name mycont -p 8080:8080 myapp:latest
+
+echo "Deployment Complete!"
